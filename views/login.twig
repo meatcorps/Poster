@@ -1,0 +1,23 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% set active_page = "login" %}
+{% extends "extends/base.twig" %}
+
+{% block title %}Admin login{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Admin Login</h1>
+    </div>
+    
+    <p class="lead">
+        Please enter your login credentials below:
+    </p>
+    
+    <form action="{{ path('admin_login_check') }}" method="post">
+        {% if (error|length > 0) %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+        {{ form_widget(form) }}
+    </form>
+{% endblock %}
+
+
+

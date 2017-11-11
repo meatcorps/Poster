@@ -1,0 +1,56 @@
+{% set active_page = "admin.posts" %}
+{% extends "extends/base.twig" %}
+
+{% block title %}Admin: Post overview{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Admin: Post overview</h1>
+    </div>
+    
+    <p class="lead">
+        You can add, change or remove a post.
+    </p>
+    
+    <div id="errorDisplay" class="alert alert-danger hidden">Oops! Something has gone wrong please try again.</div>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th style="width: 200px;">Created / Updated</th>
+            <th style="width: 100px;" class="text-right">
+                <a href="{{ url('admin.post.create') }}" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}  
+          <tr>
+            <td>
+                {{ row['title'] }}<br>
+                <strong>By:</strong> {{ row['author'] }}
+            </td>
+            <td>
+                <i class="glyphicon glyphicon-plus"></i>: {{ row['created_at'] | date('H:i - d M Y') }}<br>
+                <i class="glyphicon glyphicon-edit"></i>: {{ row['updated_at'] | date('H:i - d M Y') }}
+            </td>
+            <th class="text-right">
+                <a href="{{ url('admin.post.update', {'id': row['id']}) }}" attr-id="{{ row['id'] }}" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a href="#" attr-url="{{ url('admin.post.delete', {'id': row['id']}) }}" class="btn btn-danger removebutton">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block scripts %}
+    {{ include('plugins/crudoverview.twig') }} 
+{% endblock %}

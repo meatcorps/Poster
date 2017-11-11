@@ -1,0 +1,14 @@
+{% set active_page = "admin.home" %}
+{% extends "extends/base.twig" %}
+
+{% block title %}Poster!{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Welcome {{ app.user.username }}</h1>
+    </div>
+    
+    <p class="lead">
+        You can manage here admins and posts!
+    </p>
+{% endblock %}

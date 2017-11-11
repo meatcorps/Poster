@@ -1,0 +1,10 @@
+{
+  "name": "silexdemo",
+  "version": "0.0.1",
+  "dependencies": {
+    "tinymce-dist": "~4.*",
+    "bootstrap": "~3.*",
+    "jquery": "~1.*"
+  },
+  "private": true
+}

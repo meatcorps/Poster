@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    var currentActionUrl = "";
+
+    $(document).ready(function () {    
+        $(".removebutton").click(function() {
+            currentActionUrl = $(this).attr("attr-url");
+            $('#deleteAlert').removeClass('hidden');
+            return false;
+        });
+
+        $("#deleteCancel").click(function() {
+            $('#deleteAlert').addClass('hidden');
+        });
+
+        $("#deleteConfirm").click(function() {
+            $('#deleteAlert button').addClass('hidden');
+            $.get(currentActionUrl, function(data) {
+                $('#deleteAlert').addClass('hidden');
+                $('#deleteAlert button').removeClass('hidden');
+                if (data["valid"]) {
+                    location.reload(true);
+                } else {
+                    $('#errorDisplay').removeClass('hidden');
+                    $('html, body').animate({
+                        scrollTop: $("#errorDisplay").offset().top - 100
+                    }, 500);
+                }
+            });
+        });
+    });
+
+</script>
+
+<div class="simpleModel hidden" id="deleteAlert">
+    <div class="alert">
+        <p>Are you realy sure to remove this?</p>
+        <br>
+        <button id="deleteConfirm" class="btn btn-danger">Yes</button>
+        <button id="deleteCancel" class="btn btn-success">No</button>
+    </div>
+</div>

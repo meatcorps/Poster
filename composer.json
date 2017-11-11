@@ -1,0 +1,40 @@
+{
+    "name": "DSteffen/Silexdemo",
+    "description": "Testing out Silex",
+    "type": "project",
+    "require": {
+        "silex/silex": "~2.0",
+        "twig/twig": "^1.32",
+        "doctrine/dbal": "2.2.2",
+        "symfony/twig-bridge": "^3.2",
+        "symfony/security": "^3.2",
+        "monolog/monolog": "^1.22",
+        "symfony/form": "^3.2",
+        "symfony/config": "^3.2",
+        "symfony/translation": "^3.2",
+        "symfony/validator": "^3.2"
+    },
+    "license": "Free",
+    "authors": [
+        {
+            "name": "Dennis Steffen",
+            "email": "dennis@steffen.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DSteffen\\": "src/DSteffen/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bower install"
+        ],
+        "post-update-cmd": [
+            "bower install"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7"
+    }
+}

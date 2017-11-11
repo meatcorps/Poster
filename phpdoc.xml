@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>DSteffen PHP Api Documentation</title>
+    <parser>
+        <target>build/api</target>
+    </parser>
+    <transformer>
+        <target>build/api</target>
+    </transformer>
+    <files>
+        <directory>app/*</directory>
+        <directory>src/*</directory>
+        <ignore>docs/*</ignore>
+        <ignore>vendor/*</ignore>
+        <ignore>app/*</ignore>
+        <ignore>resources/*</ignore>
+        <ignore>views/*</ignore>
+        <ignore>public/*</ignore>
+    </files>
+</phpdoc>

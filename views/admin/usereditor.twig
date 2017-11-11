@@ -1,0 +1,55 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% set active_page = "admin.user" %}
+{% extends "extends/base.twig" %}
+
+{% block title %}Admin: {% if(update) %} Edit {% else %} Insert {% endif %} admin{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Admin: {% if(update) %} Edit {% else %} Insert {% endif %} admin</h1>
+    </div>
+    
+    <p class="lead">
+        Please fill the form below
+    </p>
+    
+    <div id="errorDisplay" class="alert alert-danger hidden">Oops! Something has gone wrong please try again. All the field are required!</div>
+    
+    <form id="mainForm" action="{{ url('admin.user.post') }}" method="post">
+        {{ form_widget(form) }}
+        <div class="form-group text-right">
+            <button class="btn btn-success" type="submit">{% if(update) %} Save {% else %} Add {% endif %}</button>
+            <a href="{{ url('admin.user.overview') }}" class="btn btn-primary">Back</a>
+        </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+   
+   <script type="text/javascript">
+       $(document).ready(function() {
+          $("#mainForm").submit(function() {
+            $(this).find('button.btn-success').addClass('hidden');  
+            $("#errorDisplay").addClass('hidden'); 
+            
+            $.post($(this).attr('action'), $(this).serialize(), function(data) {
+                
+                $("#mainForm").find('button.btn-success').removeClass('hidden');  
+
+                if (data["valid"]) {
+                    location.href="{{ url('admin.user.overview') }}";
+                } else {
+                    $("#errorDisplay").removeClass('hidden'); 
+                    $('html, body').animate({
+                        scrollTop: $("#errorDisplay").offset().top - 100
+                    }, 500);
+                }
+                
+            });  
+            
+            return false;  
+          });
+       });
+   </script>
+{% endblock %}
+
